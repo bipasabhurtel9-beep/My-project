@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Inventory Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <h2>Inventory Management System</h2>
+        <div>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('inventory') }}">Inventory</a>
+            <a href="{{ url_for('add_item') }}">Add Item</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Edit Inventory Item</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" class="form-box">
+            <label for="product_name">Product Name</label>
+            <input type="text" name="product_name" id="product_name" value="{{ item.product_name }}" required>
+
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" id="quantity" value="{{ item.quantity }}" required min="0">
+
+            <label for="category">Category</label>
+            <input type="text" name="category" id="category" value="{{ item.category }}" required>
+
+            <label for="low_stock_limit">Low Stock Limit</label>
+            <input type="number" name="low_stock_limit" id="low_stock_limit" value="{{ item.low_stock_limit }}" required min="0">
+
+            <button type="submit">Update Item</button>
+        </form>
+    </div>
+</body>
+</html>

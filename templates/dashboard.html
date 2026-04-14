@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Inventory System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <h2>Inventory Dashboard</h2>
+        <div>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('inventory') }}">Inventory</a>
+            <a href="{{ url_for('add_item') }}">Add Item</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h1>Welcome, {{ session['username'] }}</h1>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Total Inventory Items</h3>
+                <p>{{ total_items }}</p>
+            </div>
+            <div class="card">
+                <h3>Low Stock Items</h3>
+                <p>{{ low_stock_count }}</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Low Stock Alerts</h2>
+            {% if low_stock_items %}
+                <table>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Low Stock Limit</th>
+                    </tr>
+                    {% for item in low_stock_items %}
+                    <tr>
+                        <td>{{ item.product_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.low_stock_limit }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>No low stock items.</p>
+            {% endif %}
+        </div>
+
+        <div class="section">
+            <h2>Recent Inventory Items</h2>
+            {% if recent_items %}
+                <table>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Category</th>
+                    </tr>
+                    {% for item in recent_items %}
+                    <tr>
+                        <td>{{ item.product_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.category }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>No inventory records found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
