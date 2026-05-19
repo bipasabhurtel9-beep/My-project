@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Inventory System</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="login-body">
-    <div class="login-container">
-        <h1>Inventory Management System</h1>
-        <h2>Login</h2>
+<body>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="message {{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+<div class="container small-box">
+    <h1>Login</h1>
 
-        <form method="POST" class="form-box">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" required>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required>
+    <form method="POST" class="form-box">
 
-            <button type="submit">Login</button>
-        </form>
+        <label>Username</label>
+        <input type="text" name="username" required>
 
-        <p class="login-note"><strong>Sample Login:</strong> admin / admin123</p>
-    </div>
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+
+    </form>
+</div>
+
 </body>
 </html>
