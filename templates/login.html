@@ -2,32 +2,66 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background:#f2f2f2;
+        }
+
+        .login-box{
+            width:350px;
+            margin:auto;
+            margin-top:120px;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+        }
+
+        h1{
+            font-size:50px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            margin-bottom:20px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#007bff;
+            color:white;
+            border:none;
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-<div class="container small-box">
-    <h1>Login</h1>
+<div class="login-box">
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="message {{ category }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+<h1>Login</h1>
 
-    <form method="POST" class="form-box">
+<form method="POST">
 
-        <label>Username</label>
-        <input type="text" name="username" required>
+<label>Username</label>
+<input type="text" name="username">
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+<label>Password</label>
+<input type="password" name="password">
 
-        <button type="submit">Login</button>
+<button type="submit">
+Login
+</button>
 
-    </form>
+</form>
+
 </div>
 
 </body>

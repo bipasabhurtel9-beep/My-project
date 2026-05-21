@@ -1,100 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Sales Records</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+<title>Sales Records</title>
 
-        h1 {
-            color: #333;
-        }
+<style>
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-        }
+body{
+font-family:Arial;
+background:#f2f2f2;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+.container{
+width:70%;
+margin:auto;
+margin-top:50px;
+background:white;
+padding:30px;
+border-radius:10px;
+}
 
-        table, th, td {
-            border: 1px solid #ccc;
-        }
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+th,td{
+border:1px solid #ddd;
+padding:15px;
+}
 
-        th {
-            background-color: #f4f4f4;
-        }
+th{
+background:#eee;
+}
 
-        .btn {
-            padding: 8px 12px;
-            text-decoration: none;
-            border-radius: 5px;
-            background-color: #007BFF;
-            color: white;
-        }
+.btn{
+background:#007bff;
+color:white;
+padding:10px 15px;
+border-radius:5px;
+text-decoration:none;
+float:right;
+}
 
-        .btn:hover {
-            background-color: #0056b3;
-        }
+</style>
 
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .no-data {
-            margin-top: 20px;
-            color: red;
-        }
-    </style>
 </head>
+
 <body>
 
 <div class="container">
 
-    <div class="top-bar">
-        <h1>Sales Records</h1>
-        <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
-    </div>
+<a href="/" class="btn">
+Back to Dashboard
+</a>
 
-    {% if sales_records %}
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Product Name</th>
-                    <th>Quantity Sold</th>
-                    <th>Sale Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for sale in sales_records %}
-                <tr>
-                    <td>{{ sale.id }}</td>
-                    <td>{{ sale.product_name }}</td>
-                    <td>{{ sale.quantity_sold }}</td>
-                    <td>{{ sale.sale_date }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p class="no-data">No sales recorded yet.</p>
-    {% endif %}
+<h1>Sales Records</h1>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Product Name</th>
+<th>Quantity Sold</th>
+<th>Sale Date</th>
+</tr>
+
+{% for sale in sales_records %}
+
+<tr>
+
+<td>{{ sale['id'] }}</td>
+<td>{{ sale['product_name'] }}</td>
+<td>{{ sale['quantity_sold'] }}</td>
+<td>{{ sale['sale_date'] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
 
 </div>
 

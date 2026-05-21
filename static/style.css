@@ -1,87 +1,102 @@
-body{
-    font-family: Arial;
-    background:#f4f4f4;
-    margin:0;
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
 }
 
-.navbar{
-    background:#0077cc;
-    color:white;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
+.container {
+    width: 85%;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
 }
 
-.navbar a{
-    color:white;
-    text-decoration:none;
-    margin-left:15px;
+.small-box {
+    width: 350px;
 }
 
-.container{
-    width:90%;
-    margin:30px auto;
-    background:white;
-    padding:20px;
-    border-radius:8px;
+h1 {
+    font-size: 32px;
+    color: #333;
 }
 
-.small-box{
-    max-width:400px;
+input {
+    padding: 6px;
+    font-size: 14px;
 }
 
-.form-box{
-    display:flex;
-    flex-direction:column;
+.btn {
+    background: #007bff;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-input{
-    padding:10px;
-    margin-bottom:15px;
+.dashboard-btn {
+    float: right;
+    background: #007bff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-button{
-    padding:10px;
-    background:#0077cc;
-    color:white;
-    border:none;
-    cursor:pointer;
+.edit-btn {
+    background: orange;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
+.delete-btn {
+    background: red;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-table th,
-table td{
-    border:1px solid #ccc;
-    padding:10px;
+.card {
+    background: #eeeeee;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
 }
 
-.card-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.card{
-    background:#0077cc;
-    color:white;
-    padding:20px;
-    border-radius:8px;
+th {
+    background: #eeeeee;
+    text-align: left;
+    padding: 12px;
 }
 
-.message{
-    padding:10px;
-    margin-bottom:10px;
+td {
+    padding: 12px;
+    border: 1px solid #dddddd;
 }
 
-.success{
-    background:#c8f7c5;
+.ok {
+    background: green;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
-.error{
-    background:#ffcccc;
+.low {
+    background: red;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
 }
