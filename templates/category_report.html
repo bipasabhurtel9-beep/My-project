@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Category Report</h1>
+
+<p>This Iteration 3 feature shows inventory summary grouped by product category.</p>
+
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Total Items</th>
+        <th>Total Quantity</th>
+        <th>Total Value</th>
+    </tr>
+
+    {% for row in category_data %}
+    <tr>
+        <td>{{ row.category }}</td>
+        <td>{{ row.total_items }}</td>
+        <td>{{ row.total_quantity }}</td>
+        <td>${{ "%.2f"|format(row.total_value or 0) }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">No category data available</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<a class="btn" href="{{ url_for('reports') }}">Back to Reports</a>
+
+{% endblock %}

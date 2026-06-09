@@ -1,90 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Add Item</title>
+{% extends "base.html" %}
 
-<style>
+{% block content %}
 
-body{
-font-family:Arial;
-background:#f2f2f2;
-}
+<h1>Add Item</h1>
 
-.container{
-width:85%;
-margin:auto;
-margin-top:50px;
-background:white;
-padding:30px;
-border-radius:10px;
-}
+<form method="POST" class="form-box">
+    <label>Product Name</label>
+    <input type="text" name="product_name" required>
 
-input{
-width:100%;
-padding:12px;
-margin-bottom:20px;
-}
+    <label>Quantity</label>
+    <input type="number" name="quantity" required>
 
-button{
-width:100%;
-padding:12px;
-background:#007bff;
-color:white;
-border:none;
-}
+    <label>Category</label>
+    <input type="text" name="category" required>
 
-.nav{
-background:#007bff;
-padding:20px;
-}
+    <label>Low Stock Limit</label>
+    <input type="number" name="low_stock_limit" required>
 
-.nav a{
-color:white;
-margin-left:20px;
-text-decoration:none;
-float:right;
-}
+    <label>Unit Price</label>
+    <input type="number" step="0.01" name="unit_price" required>
 
-</style>
-
-</head>
-
-<body>
-
-<div class="nav">
-
-<a href="/logout">Logout</a>
-<a href="/add_item">Add Item</a>
-<a href="/inventory">Inventory</a>
-<a href="/">Dashboard</a>
-
-</div>
-
-<div class="container">
-
-<h1>Add Inventory Item</h1>
-
-<form method="POST">
-
-<label>Product Name</label>
-<input type="text" name="product_name">
-
-<label>Quantity</label>
-<input type="number" name="quantity">
-
-<label>Category</label>
-<input type="text" name="category">
-
-<label>Low Stock Limit</label>
-<input type="number" name="low_stock_limit">
-
-<button type="submit">
-Add Item
-</button>
-
+    <button type="submit">Add Item</button>
 </form>
 
-</div>
-
-</body>
-</html>
+{% endblock %}

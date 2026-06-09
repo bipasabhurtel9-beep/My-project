@@ -1,125 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Dashboard</title>
+{% extends "base.html" %}
 
-<style>
-
-body{
-font-family:Arial;
-background:#f2f2f2;
-}
-
-.nav{
-background:#007bff;
-padding:20px;
-color:white;
-}
-
-.nav a{
-color:white;
-margin-left:20px;
-text-decoration:none;
-float:right;
-}
-
-.container{
-width:85%;
-margin:auto;
-margin-top:30px;
-background:white;
-padding:30px;
-border-radius:10px;
-}
-
-.cards{
-display:flex;
-gap:20px;
-}
-
-.card{
-flex:1;
-background:#007bff;
-color:white;
-padding:20px;
-border-radius:10px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
-
-th,td{
-border:1px solid #ddd;
-padding:15px;
-}
-
-th{
-background:#eee;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="nav">
-
-<h2 style="display:inline;">
-Inventory Management System
-</h2>
-
-<a href="/logout">Logout</a>
-<a href="/sales">Sales</a>
-<a href="/inventory">Inventory</a>
-<a href="/">Dashboard</a>
-
-</div>
-
-<div class="container">
+{% block content %}
 
 <h1>Dashboard</h1>
 
 <div class="cards">
+    <div class="card">
+        <h2>Total Items</h2>
+        <p>{{ total_items }}</p>
+    </div>
 
-<div class="card">
-<h2>Total Items</h2>
-<h3>{{ total_items }}</h3>
-</div>
+    <div class="card">
+        <h2>Low Stock Items</h2>
+        <p>{{ low_stock_count }}</p>
+    </div>
 
-<div class="card">
-<h2>Low Stock Items</h2>
-<h3>{{ low_stock_count }}</h3>
-</div>
+    <div class="card">
+        <h2>Total Sales Records</h2>
+        <p>{{ total_sales }}</p>
+    </div>
 
+    <div class="card">
+        <h2>Total Inventory Value</h2>
+        <p>${{ "%.2f"|format(total_inventory_value) }}</p>
+    </div>
 </div>
 
 <h2>Low Stock Alerts</h2>
 
 <table>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+    </tr>
 
-<tr>
-<th>Product</th>
-<th>Quantity</th>
-</tr>
-
-{% for item in low_stock_items %}
-
-<tr>
-
-<td>{{ item['product_name'] }}</td>
-<td>{{ item['quantity'] }}</td>
-
-</tr>
-
-{% endfor %}
-
+    {% for item in low_stock_items %}
+    <tr>
+        <td>{{ item.product_name }}</td>
+        <td><span class="badge-low">{{ item.quantity }} LOW</span></td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="2">No low stock items</td>
+    </tr>
+    {% endfor %}
 </table>
 
-</div>
+<h2>Recent Sales</h2>
 
-</body>
-</html>
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity Sold</th>
+        <th>Sale Date</th>
+    </tr>
+
+    {% for sale in recent_sales %}
+    <tr>
+        <td>{{ sale.product_name }}</td>
+        <td>{{ sale.quantity_sold }}</td>
+        <td>{{ sale.sale_date }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="3">No recent sales</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Reports</h1>
+
+<div class="cards">
+    <div class="card">
+        <h2>Total Items</h2>
+        <p>{{ total_items }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Total Sales Records</h2>
+        <p>{{ total_sales }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Low Stock Items</h2>
+        <p>{{ low_stock_items|length }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Total Inventory Value</h2>
+        <p>${{ "%.2f"|format(total_inventory_value) }}</p>
+    </div>
+</div>
+
+<div class="action-row">
+    <a class="btn" href="{{ url_for('category_report') }}">View Category Report</a>
+    <a class="btn" href="{{ url_for('export_sales') }}">Export Sales CSV</a>
+</div>
+
+<h2>Sales Report</h2>
+
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity Sold</th>
+        <th>Sale Date</th>
+    </tr>
+
+    {% for sale in sales_records %}
+    <tr>
+        <td>{{ sale.product_name }}</td>
+        <td>{{ sale.quantity_sold }}</td>
+        <td>{{ sale.sale_date }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="3">No sales records available</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Category Summary</h2>
+
+<table>
+    <tr>
+        <th>Category</th>
+        <th>Total Items</th>
+        <th>Total Quantity</th>
+        <th>Total Value</th>
+    </tr>
+
+    {% for row in category_data %}
+    <tr>
+        <td>{{ row.category }}</td>
+        <td>{{ row.total_items }}</td>
+        <td>{{ row.total_quantity }}</td>
+        <td>${{ "%.2f"|format(row.total_value or 0) }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">No category data available</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Low Stock Report</h2>
+
+<table>
+    <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Low Stock Limit</th>
+    </tr>
+
+    {% for item in low_stock_items %}
+    <tr>
+        <td>{{ item.product_name }}</td>
+        <td><span class="badge-low">{{ item.quantity }} LOW</span></td>
+        <td>{{ item.low_stock_limit }}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="3">No low stock items</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

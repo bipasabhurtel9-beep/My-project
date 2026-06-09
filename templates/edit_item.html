@@ -1,77 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Edit Item</title>
+{% extends "base.html" %}
 
-<style>
-
-body{
-font-family:Arial;
-background:#f2f2f2;
-}
-
-.container{
-width:85%;
-margin:auto;
-margin-top:50px;
-background:white;
-padding:30px;
-border-radius:10px;
-}
-
-input{
-width:100%;
-padding:12px;
-margin-bottom:20px;
-}
-
-button{
-width:100%;
-padding:12px;
-background:#007bff;
-color:white;
-border:none;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
+{% block content %}
 
 <h1>Edit Item</h1>
 
-<form method="POST">
+<form method="POST" class="form-box">
+    <label>Product Name</label>
+    <input type="text" name="product_name" value="{{ item.product_name }}" required>
 
-<label>Product Name</label>
-<input type="text"
-name="product_name"
-value="{{ item['product_name'] }}">
+    <label>Quantity</label>
+    <input type="number" name="quantity" value="{{ item.quantity }}" required>
 
-<label>Quantity</label>
-<input type="number"
-name="quantity"
-value="{{ item['quantity'] }}">
+    <label>Category</label>
+    <input type="text" name="category" value="{{ item.category }}" required>
 
-<label>Category</label>
-<input type="text"
-name="category"
-value="{{ item['category'] }}">
+    <label>Low Stock Limit</label>
+    <input type="number" name="low_stock_limit" value="{{ item.low_stock_limit }}" required>
 
-<label>Low Stock Limit</label>
-<input type="number"
-name="low_stock_limit"
-value="{{ item['low_stock_limit'] }}">
+    <label>Unit Price</label>
+    <input type="number" step="0.01" name="unit_price" value="{{ item.unit_price }}" required>
 
-<button type="submit">
-Update Item
-</button>
-
+    <button type="submit">Update Item</button>
 </form>
 
-</div>
-
-</body>
-</html>
+{% endblock %}
